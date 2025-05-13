@@ -15,6 +15,7 @@ namespace jmailaS5.Repositories
             dbPath = path;
         }
 
+
         private void Init()
         {
             if (conn is not null)
@@ -60,6 +61,51 @@ namespace jmailaS5.Repositories
             return new List<Persona>();
         
         }
-        
+        public void UpdatePerson(int id, string newName)
+        {
+            try
+            {
+                Init();
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Id == id);
+                if (persona != null)
+                {
+                    persona.Name = newName;
+                    conn.Update(persona);
+                    statusMasagge = "Dato actualizado correctamente.";
+                }
+                else
+                {
+                    statusMasagge = "Persona no encontrada.";
+                }
+            }
+            catch (Exception ex)
+            {
+                statusMasagge = $"ERROR: {ex.Message}";
+            }
+        }
+
+
+        public void DeletePerson(int id)
+        {
+            try
+            {
+                Init();
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Id == id);
+                if (persona != null)
+                {
+                    conn.Delete(persona);
+                    statusMasagge = "Dato eliminado correctamente.";
+                }
+                else
+                {
+                    statusMasagge = "Persona no encontrada.";
+                }
+            }
+            catch (Exception ex)
+            {
+                statusMasagge = $"ERROR: {ex.Message}";
+            }
+        }
+
     }
 }
