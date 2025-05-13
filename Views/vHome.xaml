@@ -18,8 +18,7 @@
 
         <Entry x:Name="txtNombre"
                Placeholder="Ingrese el Nombre" />
-
-        <!-- Botones en dos filas -->
+       
         <Grid ColumnSpacing="10" RowSpacing="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -55,13 +54,11 @@
                     Grid.Column="1"/>
         </Grid>
 
-        <!-- Mensaje de estado -->
         <Label x:Name="statusMassage"
                FontSize="16"
                TextColor="Red"
                HorizontalOptions="Center" />
 
-        <!-- Lista de personas -->
         <CollectionView x:Name="listPersonas"
                         SelectionMode="Single"
                         SelectionChanged="listPersonas_SelectionChanged"
